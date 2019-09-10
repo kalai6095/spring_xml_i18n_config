@@ -9,7 +9,7 @@
     <artifactId>simple_xml_i18n_config</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>SPRING-MVC - ${project.artifactId}</name>
-    <url>http://memorynotfound.com</url>
+    <url>http://kalai6095.github.io</url>
     <packaging>war</packaging>
 
     <properties>

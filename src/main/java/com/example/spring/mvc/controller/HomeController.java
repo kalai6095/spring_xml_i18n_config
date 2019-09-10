@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.Locale;
 
 @Controller
@@ -19,16 +20,22 @@ public class HomeController {
     MessageSource messageSource;
 
     @Autowired
+    XMLMessageResource xmlMessageResource;
+
+    @Autowired
     Environment env;
     //@Qualifier("bundleMessageSource")
     //ResourceBundleMessageSource messageSource;
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(ModelMap model, Locale locale) {
+    public String index(ModelMap model, Locale locale, HttpSession session) {
         String[] arg = {"kalaiselvan"};
         //messageSource.getMessage("base.exm", arg, Locale.ENGLISH);
-        model.addAttribute("message", messageSource.getMessage("base.exm", arg, locale));
+        CustClassforSession cus = new CustClassforSession("kalai", "testing", 01L);
+        session.setAttribute("anme", arg);
+        session.setAttribute("cus",cus);
+        model.addAttribute("message", xmlMessageResource.getMessage("base.exm", null, locale));
         return "index";
     }
 
